@@ -1,0 +1,13 @@
+# ignore directories
+dat/
+cmake/build/
+bin/
+
+# ignore all bash scripts
+*.sh
+!make.sh
+
+# ignore other files
+*.log
+*.h5
+*.bak

@@ -1,0 +1,5 @@
+/home/sami/git/programs/cpp/periodic-async/cmake/build/CMakeFiles/edit_cache.dir
+/home/sami/git/programs/cpp/periodic-async/cmake/build/CMakeFiles/rebuild_cache.dir
+/home/sami/git/programs/cpp/periodic-async/cmake/build/src/CMakeFiles/example.dir
+/home/sami/git/programs/cpp/periodic-async/cmake/build/src/CMakeFiles/edit_cache.dir
+/home/sami/git/programs/cpp/periodic-async/cmake/build/src/CMakeFiles/rebuild_cache.dir
