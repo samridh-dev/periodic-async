@@ -21,6 +21,17 @@ public:
   template <typename T>
   period(const T& _nduration);
 
+  void start();
+  void stop();
+
+  bool is_active();
+
+  template <typename T>
+  void set_duration(const T& _nduration);
+
+  template <typename T>
+  T get_duration() const;
+
   /// update clock
   void update();
   

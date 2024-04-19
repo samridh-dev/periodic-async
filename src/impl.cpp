@@ -56,12 +56,13 @@ void async::period::flush_idle(std::queue<func_t>& f_queue) {
   std::cout<<"idling."<<std::endl;
 }
 void async::period::flush_active(std::queue<func_t>& f_queue) {
-  auto async_task = std::async(std::launch::async, [&f_queue]() {
+  std::thread remote_thread([&f_queue]() {
     while (!f_queue.empty()) {
       f_queue.front()();
       f_queue.pop();
     }
   });
+  remote_thread.detach();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
