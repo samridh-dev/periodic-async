@@ -16,7 +16,12 @@ include(cmake/include.cmake)
 add_subdirectory(src)
 
 if (ENABLE_BUILD_LIBRARY)
-  add_library(periodic-async INTERFACE)
+  add_library(periodic-async SHARED)
+
+  target_sources(periodic-async PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/impl.cpp 
+  )
+
   target_include_directories(periodic-async INTERFACE
     ${CMAKE_CURRENT_SOURCE_DIR}/include
   )
