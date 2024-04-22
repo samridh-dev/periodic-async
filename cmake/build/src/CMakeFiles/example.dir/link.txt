@@ -1,1 +1,0 @@
-/usr/bin/c++  -O3 -O3 -DNDEBUG CMakeFiles/example.dir/example.cpp.o CMakeFiles/example.dir/impl.cpp.o -o /home/sami/git/programs/cpp/periodic-async/bin/example
