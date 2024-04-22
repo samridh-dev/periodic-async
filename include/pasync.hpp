@@ -53,8 +53,7 @@ private:
   static void push_idle(std::queue<func_t>& f_queue, func_t func);
   static void push_active(std::queue<func_t>& f_queue, func_t func);
   const std::array<std::function< void (
-    std::queue<func_t>&, 
-    func_t
+    std::queue<func_t>&, func_t
   )>, 2> f_push_array;
     
 };
