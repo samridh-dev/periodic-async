@@ -6,22 +6,20 @@
 #include <queue>
 #include <functional>
 
-namespace async {
+namespace pasync {
 
 ///////////////////////////////////////////////////////////////////////////////
-/// Class Period
+/// Class Scheduler
 ///////////////////////////////////////////////////////////////////////////////
 
-enum hook : int8_t { before, after }
-
-class period {
+class scheduler {
 
   using func_t = std::function<void()>;
 
 public:
 
   template <typename T>
-  period(const T& _nduration);
+  scheduler(const T& _nduration);
   
   /// update clock
   void update();
@@ -40,7 +38,7 @@ private:
   std::chrono::steady_clock::time_point last_time;
   std::chrono::steady_clock::time_point current_time;
 
-  // Periodic Function Variables
+  // scheduleric Function Variables
   enum { f_idle = 0, f_active = 1 } f_flag;
   std::queue<func_t> f_queue;
   

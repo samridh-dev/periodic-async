@@ -2,17 +2,17 @@
 /// Class Implementations
 ///////////////////////////////////////////////////////////////////////////////
 
-#include "class.hpp"
+#include <pasync.hpp>
 #include <iostream>
 #include <future>
 
 /* ------------------------------------------------------------------------- */
-/// Method : async::period::update()
+/// Method : pasync::scheduler::update()
 /* ------------------------------------------------------------------------- */
 
 /* ------------------------------------------------------------------------- */
 
-void async::period::update() {
+void pasync::scheduler::update() {
 
   current_time  = std::chrono::steady_clock::now();
   elapsed_time += std::chrono::duration_cast<std::chrono::milliseconds>
@@ -27,35 +27,35 @@ void async::period::update() {
 }
 
 /* ------------------------------------------------------------------------- */
-/// Method : async::period::push(func_t func)
+/// Method : pasync::scheduler::push(func_t func)
 /* ------------------------------------------------------------------------- */
 
-void async::period::push(func_t func) {
+void pasync::scheduler::push(func_t func) {
   f_push_array[f_flag](f_queue, func);
 }
 
 /* ------------------------------------------------------------------------- */
 
-void async::period::push_idle(std::queue<func_t>& f_queue, func_t func) {}
-void async::period::push_active(std::queue<func_t>& f_queue, func_t func) {
+void pasync::scheduler::push_idle(std::queue<func_t>& f_queue, func_t func) {}
+void pasync::scheduler::push_active(std::queue<func_t>& f_queue, func_t func) {
   f_queue.push(func); 
 }
 
 /* ------------------------------------------------------------------------- */
-/// Method : async::period::flush()
+/// Method : pasync::scheduler::flush()
 /* ------------------------------------------------------------------------- */
 
-void async::period::flush() {
+void pasync::scheduler::flush() {
   f_flush_array[f_flag](f_queue);
   f_flag = f_idle;
 }
 
 /* ------------------------------------------------------------------------- */
 
-void async::period::flush_idle(std::queue<func_t>& f_queue) {
+void pasync::scheduler::flush_idle(std::queue<func_t>& f_queue) {
   std::cout<<"idling."<<std::endl;
 }
-void async::period::flush_active(std::queue<func_t>& f_queue) {
+void pasync::scheduler::flush_active(std::queue<func_t>& f_queue) {
   std::thread remote_thread([&f_queue]() {
     while (!f_queue.empty()) {
       f_queue.front()();

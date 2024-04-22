@@ -3,7 +3,7 @@
 /////////////////////////////////////////////////////////////////////////////// 
 
 template <typename T>
-async::period::period(const T& _nduration) :
+pasync::scheduler::scheduler(const T& _nduration) :
 
   nduration(std::chrono::duration_cast<std::chrono::milliseconds>(_nduration)),
   elapsed_time(0),

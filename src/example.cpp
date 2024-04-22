@@ -1,4 +1,4 @@
-#include "class.hpp"
+#include <pasync.hpp>
 #include <iostream>
 #include <thread>
 
@@ -8,28 +8,28 @@ void c() { std::cout<<"function c"<<std::endl; }
 
 int main() {
 
-  class async::period period(std::chrono::seconds(3));
+  class pasync::scheduler scheduler(std::chrono::seconds(3));
 
   auto beg = std::chrono::high_resolution_clock::now();
 
   for (auto j = 0; j < 50; j++) {
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
     
-    // update period counter
-    period.update();
+    // update scheduler counter
+    scheduler.update();
     
-    // push functions to period
+    // push functions to scheduler
     const int i = 49;
-    period.push([=]() {
+    scheduler.push([=]() {
       std::cout << "lambda function with parameter : " << i << std::endl;
       std::this_thread::sleep_for(std::chrono::milliseconds(500));
     });
-    period.push(a);
-    period.push(c);
-    period.push(b);
+    scheduler.push(a);
+    scheduler.push(c);
+    scheduler.push(b);
     
     // run functions only after nseconds since last run
-    period.flush();
+    scheduler.flush();
   }
 
   auto end = std::chrono::high_resolution_clock::now();
